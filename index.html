@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><!-- Google AdSense: ID de editor -->
+<script data-ad-client="ca-pub-3289191632952433" 
+        async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Ley 87-01</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f6f9; color:#333; }
+    .banner {
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #00695c, #004d40);
+      color: #fff; padding: 30px 20px; flex-wrap: wrap; border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .logo-header { margin-right: 30px; flex-shrink: 0; }
+    .logo-header img { width: 270px; height: auto; }
+    .welcome-text { text-align: center; max-width: 700px; }
+    .welcome-text h1 { font-size: 32px; margin: 0 0 10px 0; line-height: 1.2; }
+    .welcome-text p { font-size: 18px; margin: 0; }
+    main { max-width:1000px; margin:30px auto; padding:20px; background:#fff; border-radius:10px;
+           box-shadow:0 4px 10px rgba(0,0,0,0.15); }
+    label { font-weight:bold; display:block; margin-top:10px; font-size:16px; }
+    input, select { padding:12px; width:100%; margin:10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; }
+    button { padding:14px 22px; border:none; background:#00695c; color:#fff; font-weight:bold;
+             border-radius:8px; cursor:pointer; transition:0.3s; margin-right:10px; font-size:16px; }
+    button:hover { background:#004d40; }
+    .btn-clear { background:#b71c1c; }
+    .btn-clear:hover { background:#7f0000; }
+    .result { margin-top:20px; font-size:18px; font-weight:bold; color:#004d40; background:#e0f2f1;
+              padding:20px; border-radius:8px; white-space:pre-line; line-height:1.6; }
+    table { width:100%; border-collapse:collapse; margin-top:25px; font-size:18px; }
+    th, td { padding:15px; text-align:left; border:1px solid #ddd; }
+    th { background:#00695c; color:#fff; font-size:20px; }
+    tr:nth-child(even) { background:#f9f9f9; }
+    .ref { font-size:15px; color:#444; margin-top:25px; line-height:1.6; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="banner">
+    <div class="logo-header">
+      <img src="images/logo.png.png" alt="Mi Logo" class="logo">
+    </div>
+    <div class="welcome-text">
+      <h1>Bienvenido a la Calculadora de Subsidios (RD) Ley 87-01</h1>
+      <p>Maternidad • Lactancia • Enfermedad Común • Accidente Laboral • Enfermedad Profesional</p>
+      Creada por Eduardo Abreu Marte - Consultor de seguridad social<br>
+       Inf:eduardoabreumarte@gmail.com
+    </div>
+  </div>
+</header>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3289191632952433"  <!-- tu ID real -->
+     data-ad-slot="7567921562"                 <!-- tu slot real -->
+     data-ad-format="auto"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<main>
+  <section>
+    <h2>Datos del empleado</h2>
+
+    <!-- AHORA EL SELECTOR DE SUBSIDIO VA PRIMERO -->
+    <label for="tipo">📌 Selecciona el subsidio a calcular:</label>
+    <select id="tipo" onchange="mostrarCampos()">
+      <option value="maternidad">Maternidad (14 semanas)</option>
+      <option value="lactancia">Lactancia</option>
+      <option value="enfermedad">Enfermedad común</option>
+      <option value="accidente">Accidente laboral (IDOPRIL)</option>
+      <option value="profesional">Enfermedad profesional (IDOPRIL)</option>
+    </select>
+
+    <label for="sueldo">💰 Sueldo mensual actual (RD$):</label>
+    <input type="text" id="sueldo" placeholder="Ejemplo: 25000" onblur="formatearSueldo()">
+
+    <!-- Sueldos de los últimos 2 meses (se suma con el principal) -->
+    <div id="ultimosSueldosDiv" class="hidden">
+      <label>📊 Últimos 2 sueldos adicionales:</label>
+      <input type="number" id="sueldo1" placeholder="Sueldo mes 1">
+      <input type="number" id="sueldo2" placeholder="Sueldo mes 2">
+    </div>
+
+    <!-- Último sueldo antes del parto -->
+    <div id="ultimoSueldoDiv" class="hidden">
+      <label for="ultimoSueldo">💵 Último sueldo antes del parto:</label>
+      <input type="text" id="ultimoSueldo" placeholder="Ejemplo: 25000" onblur="formatearUltimoSueldo()">
+    </div>
+
+    <label for="inicio">📅 Fecha de inicio laboral:</label>
+    <input type="date" id="inicio">
+
+    <div id="fechaDiv">
+      <label for="corte" id="fechaLabel">📅 Fecha de corte (actualidad o finalidad laboral):</label>
+      <input type="date" id="corte">
+    </div>
+
+    <div id="diasLicenciaDiv" class="hidden">
+      <label for="dias">📝 Días de licencia/incapacidad:</label>
+      <input type="number" id="dias" placeholder="Ejemplo: 20">
+    </div>
+
+    <div id="tipoEnfermedadDiv" class="hidden">
+      <label for="tipoEnfermedad">🏥 Tipo de enfermedad:</label>
+      <select id="tipoEnfermedad">
+        <option value="ambulatorio">Ambulatorio (60%)</option>
+        <option value="hospitalizado">Hospitalizado (40%)</option>
+      </select>
+    </div>
+
+    <div style="margin-top:15px;">
+      <button onclick="calcular()">Calcular</button>
+      <button onclick="window.print()">🖨️ Imprimir resultados</button>
+      <button class="btn-clear" onclick="limpiar()">🧹 Limpiar datos</button>
+    </div>
+
+    <div class="result" id="resultado"></div>
+
+    <!-- (TABLA Y REFERENCIAS IGUAL QUE TU CÓDIGO, NO TOQUÉ NADA) -->
+    <h2>📊 Tabla de referencia (2025)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Subsidio</th>
+          <th>Porcentaje</th>
+          <th>Duración</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maternidad</td>
+          <td>100 %</td>
+          <td>14 semanas (3.5 meses)</td>
+          <td>La madre recibe su sueldo completo durante todo el período.</td>
+        </tr>
+        <tr>
+          <td>Lactancia</td>
+          <td>33 %, 12 %, 6 %</td>
+          <td>12 meses</td>
+          <td>Mínimo 8 meses cotizados.<br>
+              33 % si sueldo ≤ RD$21,674.80<br>
+              12 % si entre 1 y 2 salarios mínimos<br>
+              6 % si entre 2 y 3 salarios mínimos
+          </td>
+        </tr>
+        <tr>
+          <td>Enfermedad común</td>
+          <td>60 % ambulatorio<br>40 % hospitalizado</td>
+          <td>Hasta 26 semanas</td>
+          <td>Requiere 12 cotizaciones. Los primeros 3 días no son cubiertos por SISALRIL.</td>
+        </tr>
+        <tr>
+          <td>Accidente laboral (IDOPRIL)</td>
+          <td>75 %</td>
+          <td>Durante incapacidad</td>
+          <td>Se paga el 75 % del promedio de los últimos 3 sueldos reportados.</td>
+        </tr>
+        <tr>
+          <td>Enfermedad profesional (IDOPRIL)</td>
+          <td>75 %</td>
+          <td>Durante incapacidad</td>
+          <td>Cubre enfermedades laborales reconocidas. Pago = 75 % del promedio de los últimos 3 sueldos.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="ref">
+      📌 <b>Referencias:</b><br>
+      • Salario mínimo nacional (abril 2025): RD$21,674.80.<br>
+      • Subsidio por lactancia: Resolución CNSS (33 %, 12 %, 6 % según nivel salarial y mínimo 8 cotizaciones).<br>
+      • Enfermedad común: SISALRIL (60 % ambulatorio / 40 % hospitalización).<br>
+      • Accidente laboral y Enfermedad profesional: Ley 87-01 / IDOPRIL, pago del 75 % del promedio de los últimos 3 sueldos.<br>
+    </div>
+  </section>
+</main>
+<!-- Bloque de anuncio AdSense (usa tus datos reales) -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3289191632952433"  <!-- tu ID real -->
+     data-ad-slot="7567921562"                 <!-- tu slot real -->
+     data-ad-format="auto"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script>
+  const SALARIO_MINIMO = 21674.80;
+
+  function formatearSueldo() {
+    let input = document.getElementById("sueldo");
+    let valor = input.value.replace(/[^0-9.]/g, "");
+    if (valor) {
+      let numero = parseFloat(valor);
+      if (!isNaN(numero)) {
+        input.value = numero.toLocaleString('es-DO', { style:'currency', currency:'DOP', minimumFractionDigits:2 });
+      }
+    }
+  }
+
+  function formatearUltimoSueldo() {
+    let input = document.getElementById("ultimoSueldo");
+    let valor = input.value.replace(/[^0-9.]/g, "");
+    if (valor) {
+      let numero = parseFloat(valor);
+      if (!isNaN(numero)) {
+        input.value = numero.toLocaleString('es-DO', { style:'currency', currency:'DOP', minimumFractionDigits:2 });
+      }
+    }
+  }
+
+  function obtenerSueldo() {
+    let valor = document.getElementById("sueldo").value;
+    valor = valor.replace(/RD\$|\s|,/g, "");
+    return parseFloat(valor) || 0;
+  }
+
+  function obtenerUltimoSueldo() {
+    let valor = document.getElementById("ultimoSueldo").value;
+    valor = valor.replace(/RD\$|\s|,/g, "");
+    return parseFloat(valor) || 0;
+  }
+
+  function calcularPromedio3Sueldos() {
+    let s0 = obtenerSueldo();
+    let s1 = parseFloat(document.getElementById("sueldo1").value) || 0;
+    let s2 = parseFloat(document.getElementById("sueldo2").value) || 0;
+    if (s0 && s1 && s2) {
+      return (s0 + s1 + s2) / 3;
+    }
+    return 0;
+  }
+
+  function calcularTiempoEmpresa(inicio, corte) {
+    if (!inicio || !corte) return {texto:"", mesesTotales:0};
+    let anios = corte.getFullYear() - inicio.getFullYear();
+    let meses = corte.getMonth() - inicio.getMonth();
+    if (meses < 0) { anios--; meses += 12; }
+    return { texto:`⏳ Tiempo en la empresa: ${anios} años y ${meses} meses\n\n`, mesesTotales: anios*12+meses };
+  }
+
+  function mostrarCampos() {
+    let tipo = document.getElementById("tipo").value;
+    document.getElementById("diasLicenciaDiv").classList.toggle("hidden", !(tipo === "enfermedad" || tipo === "accidente" || tipo==="profesional"));
+    document.getElementById("tipoEnfermedadDiv").classList.toggle("hidden", tipo !== "enfermedad");
+    document.getElementById("ultimosSueldosDiv").classList.toggle("hidden", !(tipo==="accidente" || tipo==="profesional"));
+
+    // ✅ Mostrar SIEMPRE el último sueldo en lactancia
+    if (tipo === "lactancia") {
+      document.getElementById("ultimoSueldoDiv").classList.remove("hidden");
+    } else {
+      document.getElementById("ultimoSueldoDiv").classList.add("hidden");
+    }
+
+    let fechaLabel = document.getElementById("fechaLabel");
+    fechaLabel.innerText = (tipo === "lactancia") ? "📅 Fecha de parto:" : "📅 Fecha de corte (actualidad o finalidad laboral):";
+  }
+
+  function calcular() {
+    let sueldo = obtenerSueldo();
+    let inicio = new Date(document.getElementById("inicio").value);
+    let corte = new Date(document.getElementById("corte").value);
+    let tipo = document.getElementById("tipo").value;
+    let dias = parseInt(document.getElementById("dias").value) || 0;
+
+    let tiempo = calcularTiempoEmpresa(inicio, corte);
+    let tiempoEmpresaTexto = tiempo.texto;
+    let mesesCotizados = tiempo.mesesTotales;
+
+    let salida = "";
+
+    switch(tipo) {
+      case "maternidad":
+        let maternidad = sueldo * 3.5;
+        salida = `${tiempoEmpresaTexto}🤰 Maternidad\n✔ Sueldo mensual: ${sueldo.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Duración: 14 semanas (3.5 meses)\n✔ Pago mensual: ${sueldo.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Total a recibir: ${maternidad.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        break;
+
+      case "lactancia":
+        if (mesesCotizados < 8) { 
+            salida = "❌ No cumple con los 8 meses cotizados requeridos para recibir lactancia."; 
+            break; 
+        }
+
+        let sueldoLactancia = obtenerUltimoSueldo() || sueldo; 
+        let pct = sueldo <= SALARIO_MINIMO ? 0.33 : sueldo <= SALARIO_MINIMO*2 ? 0.12 : sueldo <= SALARIO_MINIMO*3 ? 0.06 : 0;
+        let mensualLactancia = sueldoLactancia * pct;
+        let totalLactancia = mensualLactancia * 12;
+        salida = `${tiempoEmpresaTexto}🍼 Lactancia\n✔ Sueldo mensual principal: ${sueldo.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Último sueldo antes del parto: ${sueldoLactancia.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Porcentaje aplicado: ${(pct*100).toFixed(0)} %\n✔ Pago mensual: ${mensualLactancia.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Duración: 12 meses\n✔ Total a recibir: ${totalLactancia.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        break;
+
+      case "enfermedad":
+        if (mesesCotizados < 12) { salida = "❌ No cumple con las 12 cotizaciones requeridas para subsidio por enfermedad común."; break; }
+        if (dias <= 0) { salida = "⚠️ Ingresa los días de licencia."; break; }
+        let tipoEnf = document.getElementById("tipoEnfermedad").value;
+        let porcentaje = tipoEnf === "ambulatorio" ? 0.60 : 0.40;
+        let diasCubiertos = dias > 3 ? dias-3 : 0;
+        let pago = sueldo * porcentaje * (diasCubiertos/30);
+        salida = `${tiempoEmpresaTexto}🤒 Enfermedad común - ${tipoEnf}\n✔ Días de licencia: ${dias}\n✔ Días cubiertos: ${diasCubiertos}\n✔ Porcentaje aplicado: ${(porcentaje*100)}%\n✔ Pago SISALRIL: ${pago.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        break;
+
+      case "accidente":
+      case "profesional":
+        if (dias <= 0) { salida = "⚠️ Ingresa los días de incapacidad."; break; }
+        let promedio = calcularPromedio3Sueldos();
+        if (!promedio) { salida = "⚠️ Ingresa el sueldo principal y los 2 sueldos adicionales para calcular el promedio."; break; }
+        let pagoIDOPRIL = promedio * 0.75 * (dias/30);
+        let tipoTexto = (tipo==="accidente") ? "⚡ Accidente laboral (IDOPRIL)" : "🏭 Enfermedad profesional (IDOPRIL)";
+        salida = `${tiempoEmpresaTexto}${tipoTexto}\n✔ Promedio últimos 3 sueldos: ${promedio.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Días de incapacidad: ${dias}\n✔ Porcentaje aplicado: 75%\n✔ Pago total: ${pagoIDOPRIL.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        break;
+    }
+
+    document.getElementById("resultado").innerText = salida;
+  }
+
+  function limpiar() {
+    document.getElementById("sueldo").value = "";
+    document.getElementById("sueldo1").value = "";
+    document.getElementById("sueldo2").value = "";
+    document.getElementById("inicio").value = "";
+    document.getElementById("corte").value = "";
+    document.getElementById("dias").value = "";
+    document.getElementById("tipo").value = "maternidad";
+    document.getElementById("tipoEnfermedad").value = "ambulatorio";
+    document.getElementById("resultado").innerText = "";
+    document.getElementById("ultimoSueldoDiv").classList.add("hidden");
+    document.getElementById("ultimoSueldo").value = "";
+    mostrarCampos();
+  }
+</script>
+</body>
+</html>
