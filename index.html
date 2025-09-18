@@ -221,7 +221,7 @@
       • Salario mínimo nacional (abril 2025): RD$21,674.80.<br>
       • Subsidio por lactancia: Resolución CNSS (33 %, 12 %, 6 % según nivel salarial y mínimo 8 cotizaciones).<br>
       • Enfermedad común: SISALRIL (60 % ambulatorio / 40 % hospitalización).<br>
-      • Accidente laboral y Enfermedad profesional: Ley 87-01 / IDOPRIL, pago del 75 % del promedio de los últimos 3 sueldos.<br>
+      • Accidente laboral y Enfermedad profesional: Ley 87-01 / IDOPRIL, pago del 75 % del promedio de los últimos sueldos.<br>
     </div>
   </section>
 </main>
@@ -356,7 +356,7 @@
         if (!promedio) { salida = "⚠️ Ingresa el sueldo principal y los 2 sueldos adicionales para calcular el promedio."; break; }
         let pagoIDOPRIL = promedio * 0.75 * (dias/30);
         let tipoTexto = (tipo==="accidente") ? "⚡ Accidente laboral (IDOPRIL)" : "🏭 Enfermedad profesional (IDOPRIL)";
-        salida = `${tiempoEmpresaTexto}${tipoTexto}\n✔ Promedio últimos 6 sueldos: ${promedio.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Días de incapacidad: ${dias}\n✔ Porcentaje aplicado: 75%\n✔ Pago total: ${pagoIDOPRIL.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        salida = `${tiempoEmpresaTexto}${tipoTexto}\n✔ Promedio últimos 3 sueldos: ${promedio.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Días de incapacidad: ${dias}\n✔ Porcentaje aplicado: 75%\n✔ Pago total: ${pagoIDOPRIL.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
         break;
     }
 
@@ -380,6 +380,7 @@
 </script>
 </body>
 </html>
+
 
 
 
