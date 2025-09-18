@@ -356,7 +356,7 @@
         if (!promedio) { salida = "⚠️ Ingresa el sueldo principal y los 2 sueldos adicionales para calcular el promedio."; break; }
         let pagoIDOPRIL = promedio * 0.75 * (dias/30);
         let tipoTexto = (tipo==="accidente") ? "⚡ Accidente laboral (IDOPRIL)" : "🏭 Enfermedad profesional (IDOPRIL)";
-        salida = `${tiempoEmpresaTexto}${tipoTexto}\n✔ Promedio últimos 3 sueldos: ${promedio.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Días de incapacidad: ${dias}\n✔ Porcentaje aplicado: 75%\n✔ Pago total: ${pagoIDOPRIL.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
+        salida = `${tiempoEmpresaTexto}${tipoTexto}\n✔ Promedio últimos 6 sueldos: ${promedio.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}\n✔ Días de incapacidad: ${dias}\n✔ Porcentaje aplicado: 75%\n✔ Pago total: ${pagoIDOPRIL.toLocaleString('es-DO',{style:'currency',currency:'DOP'})}`;
         break;
     }
 
@@ -380,6 +380,7 @@
 </script>
 </body>
 </html>
+
 
 
 
