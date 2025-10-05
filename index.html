@@ -458,6 +458,54 @@
     LinkedIn
   </a>
 </section>
+<!-- === BLOQUE DE POLÍTICA DE PRIVACIDAD Y COOKIES === -->
+
+<!-- Banner de Cookies -->
+<div id="cookie-banner" style="position: fixed; bottom:0; left:0; right:0;
+  background: rgba(0,0,0,0.9); color:#fff; padding:10px;
+  text-align:center; z-index:9999; font-size:14px;">
+  Este sitio usa cookies para mejorar la experiencia y mostrar anuncios.
+  Al continuar aceptas nuestra 
+  <a href="#privacy" style="color:#ffd;">Política de Privacidad</a>.
+  <button onclick="acceptCookies()" style="margin-left:15px; padding:5px 10px; border:none;
+    background:#ffd700; cursor:pointer; border-radius:5px;">Aceptar</button>
+</div>
+
+<script>
+  function acceptCookies() {
+    document.getElementById('cookie-banner').style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true');
+  }
+  window.onload = function() {
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+  };
+</script>
+
+<!-- Sección de Política de Privacidad -->
+<section id="privacy" style="padding:20px; margin-top:40px; background:#f9f9f9; border-top:1px solid #ccc;">
+  <h2>Política de Privacidad</h2>
+  <p>En <strong>Subsidios Ley 87-01</strong> respetamos la privacidad de nuestros usuarios. 
+  Esta política explica cómo recopilamos, usamos y protegemos la información de quienes visitan nuestro sitio.</p>
+
+  <h3>Uso de Cookies</h3>
+  <p>Este sitio utiliza cookies para mejorar la experiencia del usuario, analizar el tráfico y mostrar anuncios personalizados 
+     a través de Google AdSense y otros socios.</p>
+
+  <h3>Publicidad de Google</h3>
+  <p>Google, como proveedor externo, utiliza cookies para mostrar anuncios en este sitio. 
+     Puedes desactivar la personalización de anuncios en: 
+     <a href="https://www.google.com/settings/ads" target="_blank">Configuración de anuncios de Google</a>.</p>
+
+  <h3>Protección de Datos</h3>
+  <p>No compartimos ni vendemos información personal a terceros, excepto con socios de confianza para fines técnicos o publicitarios.</p>
+
+  <h3>Contacto</h3>
+  <p>Si tienes dudas sobre esta política, escríbenos a: 
+    <a href="mailto:eduardoabreumarte@gmail.com">eduardoabreumarte@gmail.com</a>
+  </p>
+</section>
 
 </body><!-- Ejemplo de uso -->
 <section id="ejemplo">
@@ -483,6 +531,7 @@
 </section>
 
 </html>
+
 
 
 
