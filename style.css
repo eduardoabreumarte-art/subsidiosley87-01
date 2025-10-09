@@ -1,0 +1,74 @@
+/* 🔸 Contenedor general */
+.contenedor-anuncios {
+    display: flex;
+    justify-content: flex-start; /* el lateral se posicionará aparte */
+    align-items: flex-start;
+    gap: 20px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+/* 🟧 Banner horizontal (debajo del título) */
+.anuncio-horizontal {
+    flex: 1 1 100%;
+    background: #ff7f2a;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.anuncio-horizontal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.anuncio-horizontal img:hover {
+    transform: scale(1.03);
+}
+
+/* 🟪 Banner lateral derecho */
+.anuncio-lateral {
+    position: fixed;           /* se mantiene visible al lado derecho */
+    top: 150px;                /* distancia desde arriba */
+    right: 20px;               /* distancia desde el borde derecho */
+    background: #6a1b9a;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;             /* siempre visible sobre el contenido */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.anuncio-lateral img {
+    width: auto;
+    max-width: 320px;          /* tamaño máximo en escritorio */
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.anuncio-lateral img:hover {
+    transform: scale(1.03);
+}
+
+/* 📱 En pantallas pequeñas (celulares o tablets) */
+@media (max-width: 768px) {
+    .anuncio-lateral {
+        position: static;       /* se comporta normal, no flotante */
+        right: auto;
+        top: auto;
+        margin: 15px auto;
+        max-width: 90%;
+    }
+
+    .anuncio-lateral img {
+        width: 100%;
+        height: auto;
+    }
+}
